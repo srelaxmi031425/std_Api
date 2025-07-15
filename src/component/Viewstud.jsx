@@ -1,72 +1,91 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavigationBar from './NavigationBar'
+import axios from 'axios'
 
 const Viewstud = () => {
   const [stud, changeStud] = useState(
 
-    [{ "id": "1", "name": "John Doe", "roll_number": "R123", "admission_number": "A456", "college": "ABC College" }, { "id": "2", "name": "Rahul R", "roll_number": "1203", "admission_number": "A67456", "college": "ABC College" }, { "id": "3", "name": "Manu K", "roll_number": "35", "admission_number": "9792", "college": "SREE BUDHA COLLEGE " }, { "id": "4", "name": "Navaneeth", "roll_number": "24", "admission_number": "8268", "college": "SBC" }, { "id": "5", "name": "Madhav", "roll_number": "34524", "admission_number": "C342356", "college": "SBCE" }, { "id": "6", "name": "nabeel", "roll_number": "23", "admission_number": "23cs", "college": "sbce" }, { "id": "7", "name": "Vineeth Sreenivasan", "roll_number": "78", "admission_number": "R5626", "college": "Nirmala College" }, { "id": "8", "name": "Mehthab N M", "roll_number": "35", "admission_number": "N869", "college": "Nirmala College of Arts & Science" }, { "id": "9", "name": "Aneez", "roll_number": "2", "admission_number": "8268", "college": "Nirmala College of Arts & Science" }, { "id": "10", "name": "Devadath Pb", "roll_number": "24", "admission_number": "4568", "college": "Nirmala Collage of Arts & Science" }, { "id": "11", "name": "Aromal A S", "roll_number": "18", "admission_number": "12356", "college": "Nirmala Collage of Arts & Science" }]
-
+   
+{"status":"success","data":[]}
 
 
 
   )
+
+const fetchData=()=>{
+
+  axios.get("http://18.144.111.41/view_all_students.php").then(
+
+(response)=>{
+  changeStud(response.data)
+
+}
+
+
+  ).catch()
+}
+
+useEffect(()=>{fetchData()},[])
+
+
+
+
+  
   return (
-    <div>
+    <div style={{
+  backgroundImage: "url('https://wallpapers.com/images/featured/blue-color-background-9u7nhq72leu6xf5w.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  minHeight: "100vh"
+}}>
       <NavigationBar />
       <div className="container">
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <div className="row">
-              <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div className="row g-3">
 
+<div className="row">
+  <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+    
+   <h2>Student Details</h2>
 
-                {stud.map(
-
-                  (value,index) => {
-
-                    return (
-
-
-
-
-
-                      <table border="1" cellspacing="0" cellpadding="8">
-                        <thead>
-                          <tr>
-
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>RollNo</th>
-
-                            <th>AdmissionNo</th>
-                            <th>College</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>{value.id}</td>
-                            <td>{value.name}</td>
-                            <td>{value.roll_number}</td>
-                            <td>{value.admission_number}</td>
-                            <td>{value.college}</td>
-
-
-                          </tr>
-                        </tbody>
-                      </table>
-
-
-
-                    )
-
-
-
-
-
-                  }
-
-                )}
+<table 
+  border="1" 
+  cellSpacing="0" 
+  cellPadding="8" 
+  style={{
+    margin: "20px auto",
+    width: "80%",
+    borderCollapse: "collapse",  // VERY important!
+    fontFamily: "sans-serif",
+    fontSize: "14px"
+  }}
+>
+  <thead style={{ backgroundColor: "#f0f0f0" }}>
+    <tr>
+      <th style={{ border: "1px solid #000" }}>Id</th>
+      <th style={{ border: "1px solid #000" }}>Name</th>
+      <th style={{ border: "1px solid #000" }}>Roll No</th>
+      <th style={{ border: "1px solid #000" }}>Admission No</th>
+      <th style={{ border: "1px solid #000" }}>College</th>
+    </tr>
+  </thead>
+  <tbody>
+    {stud.data.map((value, index) => (
+      <tr key={index}>
+        <td style={{ border: "1px solid #000", verticalAlign: "top" }}>{value.id}</td>
+        <td style={{ border: "1px solid #000", verticalAlign: "top" }}>{value.name}</td>
+        <td style={{ border: "1px solid #000", verticalAlign: "top" }}>{value.roll_number}</td>
+        <td style={{ border: "1px solid #000", verticalAlign: "top" }}>{value.admission_number}</td>
+        <td style={{ border: "1px solid #000", verticalAlign: "top", whiteSpace: "pre-wrap" }}>{value.college}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+             
+                      
+                        
+</div>
 
 
 
@@ -74,10 +93,29 @@ const Viewstud = () => {
 
 
 
-              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+                
+
+
             </div>
 
-
+</div>
 
 
 
@@ -102,7 +140,7 @@ const Viewstud = () => {
 
 
 
-    </div>
+  
   )
 }
 

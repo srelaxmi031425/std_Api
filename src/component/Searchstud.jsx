@@ -3,7 +3,23 @@ import NavigationBar from './NavigationBar'
 
 const Searchstud = () => {
   return (
-    <div>
+
+
+ <div style={{
+  backgroundImage: "url('https://wallpapers.com/images/featured/blue-color-background-9u7nhq72leu6xf5w.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  minHeight: "100vh"
+}}>
+
+
+
+
+
+
+
+
+
 <NavigationBar/>
 <div className="container">
     <div className="row">
